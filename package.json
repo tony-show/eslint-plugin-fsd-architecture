@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-architecture",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "ESlint plugin to comply with FSD (Feature Sliced Design) frontend architecture rules",
   "keywords": [
     "fsd",
@@ -22,7 +22,8 @@
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
     "lint:js": "eslint .",
     "test": "mocha tests --recursive",
-    "update:eslint-docs": "eslint-doc-generator"
+    "update:eslint-docs": "eslint-doc-generator",
+    "changelog:generate": "changelog generate"
   },
   "dependencies": {
     "micromatch": "^4.0.5",
