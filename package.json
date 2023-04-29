@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-architecture",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "ESlint plugin to comply with FSD (Feature Sliced Design) frontend architecture rules",
   "keywords": [
     "fsd",

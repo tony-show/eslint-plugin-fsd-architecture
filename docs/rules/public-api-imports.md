@@ -36,6 +36,13 @@ import { Component } from '@/entities/Component'
 // With option: testFilesPatterns: ['**/*.test.*']
 // File path C:/Users/project/src/entities/Component/file.test.ts
 import { Component } from 'entities/Component/testing'
+
+// File path 'C:/Users/project/src/widgets/Profile/model/selectors/getUserProfile.ts',
+import { getUser } from 'entities/User'
+
+// With option: alias: '@'
+// File path 'C:/Users/project/src/widgets/Profile/model/selectors/getUserProfile.ts',
+import { getUser } from '@/entities/User'
 ```
 
 Examples of **incorrect** code for this rule:
@@ -57,4 +64,8 @@ import { Some } from 'entities/Component/testing/some.ts'
 // File path C:/Users/project/src/entities/Component/forbidden.ts
 import { Some } from 'entities/Component/testing'
 // Error: Test data need import from public API file for tests (testing.js/ts) only in files from testFilesPatterns option
+
+// File path 'C:/Users/project/src/widgets/Profile/model/selectors/getUserProfile.ts',
+import { getUser } from '../../../../entities/User/model/selectors/getUser/getUser'
+// Error: Must be imported from a public API file (index.js/ts)
 ```

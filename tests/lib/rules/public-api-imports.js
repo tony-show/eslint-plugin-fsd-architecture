@@ -9,7 +9,11 @@
 
 const rule = require("../../../lib/rules/public-api-imports"),
 RuleTester = require("eslint").RuleTester;
-const { PUBLIC_ERROR, TESTING_PUBLIC_ERROR } = require('../../../lib/consts/public-api-imports.js')
+const {
+  PUBLIC_ERROR,
+  TESTING_PUBLIC_ERROR,
+  NEED_FROM_PUBLIC_ERROR
+} = require('../../../lib/consts/public-api-imports.js')
 
 
 //------------------------------------------------------------------------------
@@ -91,6 +95,27 @@ ruleTester.run("public-api-imports", rule, {
         }
       ],
       output: null
-    }
+    },
+    {
+      filename: 'C:/Users/project/src/widgets/Profile/model/selectors/getUserProfile.ts',
+      code: "import { getUser } from '../../../../entities/User/model/selectors/getUser/getUser'",
+      errors: [{
+        messageId: NEED_FROM_PUBLIC_ERROR
+      }],
+      options: [
+        {
+          alias: '@',
+        }
+      ],
+      output: `import { getUser } from '@/entities/User'`
+    },
+    {
+      filename: 'C:/Users/project/src/widgets/Profile/model/selectors/getUserProfile.ts',
+      code: "import { getUser } from '../../../../entities/User/model/selectors/getUser/getUser'",
+      errors: [{
+        messageId: NEED_FROM_PUBLIC_ERROR
+      }],
+      output: `import { getUser } from 'entities/User'`
+    },
   ],
 });
