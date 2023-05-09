@@ -7,18 +7,17 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/import-path-check"),
-  RuleTester = require("eslint").RuleTester;
-
+const rule = require('../../../lib/rules/import-path-check'),
+  RuleTester = require('eslint').RuleTester
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parserOptions: {ecmaVersion: 6, sourceType: 'module'}
-});
-ruleTester.run("import-path-check", rule, {
+  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+})
+ruleTester.run('import-path-check', rule, {
   valid: [
     {
       filename: 'C:/Users/project/src/entities/Article',
@@ -30,22 +29,31 @@ ruleTester.run("import-path-check", rule, {
     {
       filename: 'C:/Users/project/src/entities/Article',
       code: "import { ArticleCommentSlice } from '@/entities/Article/model/slices/addCommentFormSlice'",
-      errors: [{ message: "Within one slice, all import paths must be relative" }],
+      errors: [
+        { message: 'Within one slice, all import paths must be relative' },
+      ],
       options: [
         {
-          alias: '@'
-        }
-      ]
+          alias: '@',
+        },
+      ],
+      output:
+        "import { ArticleCommentSlice } from './Article/model/slices/addCommentFormSlice'",
     },
     {
       filename: 'C:/src/entities/Country/ui/CountrySelect/CountrySelect.tsx',
       code: "import { Country } from '../../../../shared/const/country'",
-      errors: [{ message: "Shared layer import must be absolute path" }],
+      errors: [{ message: 'Shared layer import must be absolute path' }],
+      output: null,
     },
     {
       filename: 'C:/Users/project/src/entities/Article',
       code: "import { ArticleCommentSlice } from 'entities/Article/model/slices/addCommentFormSlice'",
-      errors: [{ message: "Within one slice, all import paths must be relative" }],
+      errors: [
+        { message: 'Within one slice, all import paths must be relative' },
+      ],
+      output:
+        "import { ArticleCommentSlice } from './Article/model/slices/addCommentFormSlice'",
     },
   ],
-});
+})
